@@ -1,0 +1,26 @@
+# sign-polkadot
+
+1. Build an image
+```bash
+docker build -t sign-polkadot .
+```
+
+2. Run it
+```bash
+docker run --network host -e RAW_TRANSACTION="RAW_TRANSACTION" -e PROVIDER="PROVIDER" -e SECRET_FILE_NAME="SECRET_FILE_NAME" -e PASSWORD="PASSWORD" -it sign-polkadot
+```
+
+3. Edit env variables in Dockerfile instead of passing them via a command line
+
+```
+ENV PROVIDER="wss://westend-rpc-tn.dwellir.com"
+ENV SECRET_FILE_NAME="./secret.json"
+ENV PASSWORD=""
+ENV RAW_TRANSACTION="0x"
+```
+
+Then do
+```bash
+docker build -t sign-polkadot .
+docker run --network host -it sign-polkadot
+```
